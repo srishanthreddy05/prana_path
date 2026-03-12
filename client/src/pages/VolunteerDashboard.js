@@ -4,6 +4,8 @@ import { getSocket } from "../utils/socket";
 import { authFetch } from "../utils/api";
 import "../styles/VolunteerDashboard.css";
 
+const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 const VolunteerDashboard = ({ showToast }) => {
   const [isActive, setIsActive] = useState(false);
   const [pendingBookings, setPendingBookings] = useState([]);
@@ -164,8 +166,13 @@ const VolunteerDashboard = ({ showToast }) => {
 
   const geocodeBooking = async (bookingId, lat, lng) => {
     try {
+      if (!GOOGLE_MAPS_API_KEY) {
+        setAddresses((prev) => ({ ...prev, [bookingId]: `${lat.toFixed(4)}, ${lng.toFixed(4)}` }));
+        return;
+      }
+
       const res = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyD1ZnITeqwr7gt6pMeGfnlR-EBL1kYPbXA`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`
       );
       const data = await res.json();
       const addr =
