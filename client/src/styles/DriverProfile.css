@@ -1,0 +1,216 @@
+/* === Driver Profile Styles === */
+
+.driver-profile-page {
+  padding: 30px 40px;
+  min-height: calc(100vh - 80px);
+  background: #fefae0;
+}
+
+.driver-profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.driver-profile-header {
+  background: linear-gradient(135deg, #1a237e, #283593);
+  padding: 40px;
+  text-align: center;
+  color: #fff;
+}
+
+.driver-profile-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.driver-profile-header p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 16px;
+}
+
+.driver-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.driver-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.driver-avatar-upload {
+  margin-top: 15px;
+}
+
+.driver-avatar-upload label {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.driver-avatar-upload label:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.driver-avatar-upload input {
+  display: none;
+}
+
+.driver-profile-form {
+  padding: 40px;
+}
+
+.driver-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.driver-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.driver-form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.driver-form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.driver-form-group input {
+  padding: 14px 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.driver-form-group input:focus {
+  outline: none;
+  border-color: #1a237e;
+  box-shadow: 0 0 0 3px rgba(26, 35, 126, 0.1);
+}
+
+.driver-form-group input:disabled {
+  background: #f5f5f5;
+  color: #888;
+}
+
+.driver-submit-btn {
+  width: 100%;
+  margin-top: 30px;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #28a745, #20c997);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.driver-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+}
+
+.driver-submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.driver-error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 12px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 1px solid #f5c6cb;
+}
+
+.driver-success-message {
+  background: #d4edda;
+  color: #155724;
+  padding: 12px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  border: 1px solid #c3e6cb;
+}
+
+/* Loading State */
+.driver-profile-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #666;
+}
+
+.driver-profile-loading .spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e0e0e0;
+  border-top-color: #1a237e;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .driver-profile-page {
+    padding: 20px 15px;
+  }
+  
+  .driver-profile-header {
+    padding: 30px 20px;
+  }
+  
+  .driver-profile-form {
+    padding: 30px 20px;
+  }
+  
+  .driver-form-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  
+  .driver-avatar {
+    width: 100px;
+    height: 100px;
+  }
+}

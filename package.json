@@ -1,0 +1,28 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "client": "npm start --prefix client",
+    "server": "nodemon server/server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@mapbox/polyline": "^1.2.1",
+    "@react-google-maps/api": "^2.20.7",
+    "express": "^5.1.0",
+    "leaflet": "^1.9.4",
+    "mapbox-gl": "^3.15.0",
+    "react-leaflet": "^5.0.0",
+    "react-map-gl": "^8.0.4"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.11"
+  },
+  "description": ""
+}

@@ -1,0 +1,224 @@
+.custom-hamburger,
+.custom-hamburger:focus,
+.custom-hamburger:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+/* Custom hamburger for mobile */
+.custom-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  width: 48px;
+  height: 48px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  z-index: 1200;
+  margin-left: auto;
+}
+.custom-hamburger .bar {
+  display: block;
+  width: 32px;
+  height: 4px;
+  margin: 5px 0;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.4s;
+}
+.custom-hamburger.open .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+.custom-hamburger.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.custom-hamburger.open .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile drawer nav styles */
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: -50vw;
+  width: 50vw;
+  max-width: 350px;
+  height: 100vh;
+  background: #003049;
+  box-shadow: -2px 0 16px rgba(0,0,0,0.15);
+  z-index: 1100;
+  transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+}
+.mobile-drawer.open {
+  right: 0;
+}
+.mobile-drawer .navbar-nav {
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-top: 4rem;
+}
+.mobile-drawer .nav-link {
+  font-size: 1.2rem;
+  color: #fff !important;
+  text-align: left;
+}
+.mobile-drawer .btn-signup {
+  font-size: 1.2rem;
+  color: #003049 !important;
+  text-align: left;
+}
+.mobile-drawer .nav-link:hover {
+  color: #ffd60a !important;
+}
+.mobile-drawer .user-icon {
+  color: #fff;
+}
+
+@media (max-width: 992px) {
+  .custom-hamburger {
+    display: flex;
+  }
+  .mobile-drawer {
+    display: flex;
+  }
+  .navbar-collapse.d-lg-flex {
+    display: none !important;
+  }
+}
+/* Navbar.css */
+.navbar-custom {
+  background-color: #003049; /* bluish color */
+  min-height: 64px;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+
+.navbar-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin-right: 1rem !important;
+}
+
+.navbar-title {
+  font-weight: bold;
+  color: white;
+  font-size: 2rem;
+}
+
+@media (max-width: 576px) {
+  .navbar-logo {
+    width: 36px;
+    height: 36px;
+    margin-right: 0.5rem !important;
+  }
+  .navbar-title {
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+  }
+  .custom-hamburger {
+    width: 36px;
+    height: 36px;
+    margin-left: 0.25rem;
+  }
+  .custom-hamburger .bar {
+    width: 22px;
+    height: 3px;
+    margin: 3px 0;
+  }
+}
+
+/* Nav links */
+.nav-link {
+  color: white !important;
+  font-weight: bold;
+  font-size: 1.1rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #ffc107;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: #ffd60a !important;
+}
+
+/* Sign up button */
+.btn-signup {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-signup:hover {
+  background-color: #ffd60a;
+  color: #003566;
+  transform: scale(1.05);
+}
+
+/* Navbar gap adjustments */
+.navbar-nav {
+  gap: 2.5rem;
+}
+
+@media (max-width: 992px) {
+  .navbar-nav {
+    gap: 1rem;
+  }
+}
+
+/* User icon styles */
+.user-icon {
+  font-size: 32px;
+  cursor: pointer;
+  color: white;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.user-icon:hover {
+  color: #ffd60a; /* hover color */
+  transform: scale(1.1);
+}
+
+/* Logout button */
+.logout-btn {
+  color: #003566;          /* custom blue color */
+  font-weight: 700;        /* bold text */
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;            /* small space between text and icon */
+  transition: all 0.2s ease;
+}
+
+.logout-btn:hover {
+  color: #8e0101;          /* optional hover color */
+  transform: scale(1.05);
+}
+
+/* Make the logout icon slightly bolder/larger */
+.logout-icon {
+  font-weight: 900;
+  font-size: 1.1rem;
+}

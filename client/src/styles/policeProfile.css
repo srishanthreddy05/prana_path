@@ -1,0 +1,219 @@
+.police-profile-page {
+  max-width: 1200px;
+  margin: 32px auto;
+  padding: 0 18px 40px;
+  color: #0f172a;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.profile-header h2 {
+  margin: 0;
+  font-weight: 700;
+  color: #0b2a4a;
+}
+
+.profile-header p {
+  margin: 4px 0 0;
+  color: #475569;
+}
+
+.refresh-btn {
+  background: #0ea5e9;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 8px 16px rgba(14, 165, 233, 0.18);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.profile-card,
+.map-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.avatar-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.profile-avatar {
+  width: 92px;
+  height: 92px;
+  border-radius: 16px;
+  object-fit: cover;
+  border: 3px solid #bae6fd;
+  background: #e0f2fe;
+}
+
+.upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px dashed #0ea5e9;
+  color: #0b2a4a;
+  font-weight: 600;
+  cursor: pointer;
+  background: #f0f9ff;
+}
+
+.upload-btn input {
+  display: none;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-row label {
+  font-size: 14px;
+  color: #334155;
+  margin-bottom: 6px;
+}
+
+.form-row input,
+.form-row select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+.form-row select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='0,0 140,0 70,70' fill='%236b7280'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+.form-row select:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.save-btn {
+  background: linear-gradient(120deg, #0ea5e9, #0284c7);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 700;
+  margin-top: 4px;
+  box-shadow: 0 12px 22px rgba(2, 132, 199, 0.22);
+}
+
+.map-card h4 {
+  margin: 0;
+  color: #0b2a4a;
+}
+
+.map-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.map-header p {
+  margin: 4px 0 0;
+  color: #475569;
+}
+
+.location-chip {
+  background: #e0f2fe;
+  color: #0b2a4a;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  border: 1px solid #bae6fd;
+}
+
+.profile-map {
+  width: 100%;
+  height: 580px;
+  border-radius: 12px;
+  border: 1px solid #cbd5e1;
+  overflow: hidden;
+}
+
+.location-note {
+  margin-top: 10px;
+  color: #475569;
+  font-size: 14px;
+  background: #f8fafc;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px dashed #cbd5e1;
+}
+
+.loading-bar {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background: #fff7ed;
+  color: #9a3412;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .profile-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .map-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .location-chip {
+    width: 100%;
+    text-align: center;
+  }
+}
