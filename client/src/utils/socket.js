@@ -5,7 +5,9 @@ let socketInstance = null;
 // Backend socket URL
 const SOCKET_URL =
   process.env.REACT_APP_SOCKET_URL ||
-  "https://smart-ambulance-w3i0.onrender.com";
+  (process.env.REACT_APP_API_BASE_URL
+    ? process.env.REACT_APP_API_BASE_URL.replace(/\/api\/?$/, "")
+    : "https://prana-path.onrender.com");
 
 /**
  * Get or create socket instance

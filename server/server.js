@@ -24,9 +24,10 @@ const { Server } = require("socket.io");
 
 // Get allowed origins from environment or use defaults
 const getAllowedOrigins = () => {
-  const origins = ["http://localhost:3000"];
-  if (process.env.FRONTEND_URL) origins.push(process.env.FRONTEND_URL);
-  if (process.env.VERCEL_FRONTEND_URL) origins.push(process.env.VERCEL_FRONTEND_URL);
+  const normalizeOrigin = (value) => (value ? value.replace(/\/+$/, "") : value);
+  const origins = ["http://localhost:3000", "https://prana-path-blue.vercel.app"];
+  if (process.env.FRONTEND_URL) origins.push(normalizeOrigin(process.env.FRONTEND_URL));
+  if (process.env.VERCEL_FRONTEND_URL) origins.push(normalizeOrigin(process.env.VERCEL_FRONTEND_URL));
   // origins.push("https://smart-ambulance-dun.vercel.app");
   return [...new Set(origins)];
 };

@@ -29,7 +29,7 @@ function Auth({ setIsLoggedIn, setAuthRole }) {
 
       // Send ID token to our backend to upsert user in Firebase RTDB
       const res = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL || "http://localhost:5000/api"}/auth/google`,
+        `${process.env.REACT_APP_API_BASE_URL || "https://prana-path.onrender.com/api"}/auth/google`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
