@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
+import { API_BASE_URL } from "../utils/api";
 import { getSocket } from "../utils/socket";
 import "../styles/Auth.css";
 
@@ -29,7 +30,7 @@ function Auth({ setIsLoggedIn, setAuthRole }) {
 
       // Send ID token to our backend to upsert user in Firebase RTDB
       const res = await fetch(
-        `${process.env.REACT_APP_API_BASE_URL || "https://prana-path.onrender.com/api"}/auth/google`,
+        `${API_BASE_URL}/auth/google`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -1,8 +1,26 @@
 // src/utils/api.js
 import { auth } from "../firebase";
 
-const API_BASE_URL =
-  process.env.REACT_APP_API_BASE_URL || "https://prana-path.onrender.com/api";
+const DEFAULT_PROD_API_BASE_URL = "https://prana-path.onrender.com/api";
+const DEFAULT_DEV_API_BASE_URL = "http://localhost:5000/api";
+const isProduction = process.env.NODE_ENV === "production";
+
+const isLocalhostUrl = (url) =>
+  /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i.test((url || "").trim());
+
+export const API_BASE_URL = (() => {
+  const configured = process.env.REACT_APP_API_BASE_URL?.trim();
+
+  if (!configured) {
+    return isProduction ? DEFAULT_PROD_API_BASE_URL : DEFAULT_DEV_API_BASE_URL;
+  }
+
+  if (isProduction && isLocalhostUrl(configured)) {
+    return DEFAULT_PROD_API_BASE_URL;
+  }
+
+  return configured.replace(/\/+$/, "");
+})();
 
 /**
  * Authenticated fetch using Firebase ID token.
@@ -27,7 +45,9 @@ export async function authFetch(path, options = {}) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  return fetch(`${API_BASE_URL}${path}`, {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+
+  return fetch(`${API_BASE_URL}${normalizedPath}`, {
     ...options,
     headers,
   });

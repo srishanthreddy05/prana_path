@@ -1,13 +1,32 @@
 import { io } from "socket.io-client";
 
 let socketInstance = null;
+const isProduction = process.env.NODE_ENV === "production";
+const DEFAULT_PROD_SOCKET_URL = "https://prana-path.onrender.com";
+const DEFAULT_DEV_SOCKET_URL = "http://localhost:5000";
+
+const isLocalhostUrl = (url) =>
+  /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i.test((url || "").trim());
 
 // Backend socket URL
-const SOCKET_URL =
-  process.env.REACT_APP_SOCKET_URL ||
-  (process.env.REACT_APP_API_BASE_URL
-    ? process.env.REACT_APP_API_BASE_URL.replace(/\/api\/?$/, "")
-    : "https://prana-path.onrender.com");
+const SOCKET_URL = (() => {
+  const configuredSocketUrl = process.env.REACT_APP_SOCKET_URL?.trim();
+  const configuredApiBase = process.env.REACT_APP_API_BASE_URL?.trim();
+  const derivedFromApi = configuredApiBase
+    ? configuredApiBase.replace(/\/api\/?$/, "")
+    : null;
+  const resolved = configuredSocketUrl || derivedFromApi;
+
+  if (!resolved) {
+    return isProduction ? DEFAULT_PROD_SOCKET_URL : DEFAULT_DEV_SOCKET_URL;
+  }
+
+  if (isProduction && isLocalhostUrl(resolved)) {
+    return DEFAULT_PROD_SOCKET_URL;
+  }
+
+  return resolved.replace(/\/+$/, "");
+})();
 
 /**
  * Get or create socket instance
