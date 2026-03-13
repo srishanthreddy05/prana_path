@@ -151,7 +151,7 @@ router.get("/driver", isAuthenticated, isDriver, getDriverBookings);
 router.put("/:id/accept", isAuthenticated, isAmbulanceResponder, acceptBooking);
 
 // PUT /api/bookings/:id/complete → complete a booking
-router.put("/:id/complete", isAuthenticated, isDriver, completeBooking);
+router.put("/:id/complete", isAuthenticated, isAmbulanceResponder, completeBooking);
 
 // PUT /api/bookings/:id/driver-cancel → cancel a booking (by driver)
 router.put("/:id/driver-cancel", isAuthenticated, isDriver, async (req, res) => {

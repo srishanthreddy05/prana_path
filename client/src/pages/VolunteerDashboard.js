@@ -249,8 +249,14 @@ const VolunteerDashboard = ({ showToast }) => {
 
   const handleCompleteBooking = async () => {
     if (!activeBooking) return;
+    const bookingId = activeBooking._id || activeBooking.id;
+    if (!bookingId) {
+      showToast("Missing booking id. Please refresh and try again.", "error");
+      return;
+    }
+
     try {
-      const res = await authFetch(`/bookings/${activeBooking._id}/complete`, { method: "PUT" });
+      const res = await authFetch(`/bookings/${bookingId}/complete`, { method: "PUT" });
       if (!res.ok) {
         const data = await res.json();
         showToast(data.message || "Failed to complete booking", "error");
