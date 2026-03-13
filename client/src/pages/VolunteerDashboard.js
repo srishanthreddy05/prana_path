@@ -139,14 +139,17 @@ const VolunteerDashboard = ({ showToast }) => {
     const userId = localStorage.getItem("userId");
     if (userId) socket.emit("user:join", userId);
 
-    socket.on("volunteer:booking:new", (booking) => {
+    const handleNewBooking = (booking) => {
       if (!isActive || activeBooking) return;
       setPendingBookings((prev) => {
         if (prev.some((b) => b._id === booking._id)) return prev;
         return [booking, ...prev];
       });
       showToast("🚑 New nearby emergency booking request!", "info");
-    });
+    };
+
+    socket.on("volunteer:booking:new", handleNewBooking);
+    socket.on("booking:new", handleNewBooking);
 
     socket.on("bookingCancelled", (payload) => {
       if (
@@ -160,6 +163,7 @@ const VolunteerDashboard = ({ showToast }) => {
 
     return () => {
       socket.off("volunteer:booking:new");
+      socket.off("booking:new");
       socket.off("bookingCancelled");
     };
   }, [isActive, activeBooking, showToast]);

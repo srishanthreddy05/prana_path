@@ -61,6 +61,13 @@ router.post("/", isAuthenticated, requireCompleteProfile, async (req, res) => {
       destLng,
     });
 
+    const io = req.app.get("io");
+    if (io) {
+      // Broadcast to all responders; volunteer dashboard subscribes to this in real time.
+      io.emit("booking:new", booking);
+      io.emit("volunteer:booking:new", booking);
+    }
+
     res.status(201).json({ message: "Booking created", booking });
   } catch (err) {
     console.error(err);
