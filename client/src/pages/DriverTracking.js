@@ -4,6 +4,8 @@ import { joinBookingRoom, emitDriverLocation, onUserLocation } from "../utils/so
 import { getAmbulanceIconUrl, getPoliceIconUrl } from "../utils/mapIcons";
 import "../styles/DriverDashboard.css";
 
+const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 const DriverTracking = ({ showToast }) => {
   const { bookingId } = useParams();
   const locationState = useLocation();
@@ -58,8 +60,13 @@ const DriverTracking = ({ showToast }) => {
   // Get address from coordinates
   const getAddressFromCoords = useCallback(async (lat, lng) => {
     try {
+      if (!GOOGLE_MAPS_API_KEY) {
+        setPickupAddress(`${lat.toFixed(4)}, ${lng.toFixed(4)}`);
+        return;
+      }
+
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyD1ZnITeqwr7gt6pMeGfnlR-EBL1kYPbXA`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`
       );
       const data = await response.json();
       

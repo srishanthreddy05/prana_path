@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { authFetch } from "../utils/api";
 import "../styles/DriverHistory.css";
 
+const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 const DriverHistory = ({ showToast }) => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
@@ -40,8 +42,16 @@ const DriverHistory = ({ showToast }) => {
 
   const getAddressFromCoords = async (bookingId, lat, lng) => {
     try {
+      if (!GOOGLE_MAPS_API_KEY) {
+        setAddresses(prev => ({
+          ...prev,
+          [bookingId]: `${lat.toFixed(4)}, ${lng.toFixed(4)}`
+        }));
+        return;
+      }
+
       const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyD1ZnITeqwr7gt6pMeGfnlR-EBL1kYPbXA`
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`
       );
       const data = await response.json();
       
